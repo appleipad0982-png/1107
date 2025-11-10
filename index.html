@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P5.js 測驗系統</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="uploadScreen" class="screen active">
+        <div class="container">
+            <h1>測驗系統</h1>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p>點擊或拖曳 CSV 檔案到這裡</p>
+                <input type="file" id="fileInput" accept=".csv">
+            </div>
+            <div id="fileInfo" class="file-info hidden">
+                <p>✓ 已載入 <span id="questionCount">0</span> 題</p>
+                <button id="startBtn" class="btn-primary">開始測驗</button>
+            </div>
+            <div class="csv-example">
+                <h3>CSV 格式範例：</h3>
+                <pre>題目,選項A,選項B,選項C,選項D,正確答案
+1+1=?,1,2,3,4,2
+台灣首都?,台北,台中,高雄,台南,台北</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="quizScreen" class="screen">
+        <div id="p5Canvas"></div>
+        <div class="container">
+            <div class="quiz-header">
+                <span class="progress">題目 <span id="currentQ">1</span> / <span id="totalQ">0</span></span>
+                <span class="score">得分: <span id="score">0</span></span>
+            </div>
+            
+            <div class="question-card">
+                <h2 id="questionText"></h2>
+                <div id="optionsContainer" class="options"></div>
+                <div class="button-group">
+                    <button id="submitBtn" class="btn-primary" disabled>提交答案</button>
+                    <button id="nextBtn" class="btn-primary hidden">下一題</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultScreen" class="screen">
+        <div class="container result-container">
+            <h1>測驗完成！</h1>
+            <div class="result-score">
+                <div class="big-score"><span id="finalScore">0</span>/<span id="finalTotal">0</span></div>
+                <p class="accuracy">正確率: <span id="accuracy">0</span>%</p>
+            </div>
+            <button id="restartBtn" class="btn-primary">重新開始</button>
+        </div>
+    </div>
+
+    <script src="sketch.js"></script>
+</body>
+</html>
